@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -24,9 +25,12 @@ public class UserController {
     }
 
     @GetMapping
-    public Page<User> getAllPagingUser(@RequestParam Integer page, @RequestParam Integer size) {
-        return userService.getAllPagingUser(page, size);
-
+    public Page<User> getAllPagingUser(
+            @RequestParam Integer page,
+            @RequestParam Integer size,
+            @RequestParam Optional<String> orderBy,
+            @RequestParam Optional<Boolean> asc) {
+        return userService.getAllPagingUser(page, size, orderBy, asc);
     }
 
     @GetMapping(path = "{id}")
