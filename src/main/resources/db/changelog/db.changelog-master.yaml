@@ -1,3 +1,13 @@
 databaseChangeLog:
   - include:
       file: db/changelog/definition/20210321_USER_CT.xml
+  - include:
+      file: db/changelog/definition/20210401_ROLE_CT.xml
+  - include:
+      file: db/changelog/definition/20210401_USER_ROLE_CT.xml
+  - include:
+      file: db/changelog/seed/20210401_ROLE.xml
+  - include:
+      file: db/changelog/seed/20210401_USER.xml
+  - include:
+      file: db/changelog/seed/20210401_USER_ROLE.xml

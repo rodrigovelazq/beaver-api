@@ -3,12 +3,14 @@ package com.beaverapi.controller;
 import com.beaverapi.model.User;
 import com.beaverapi.service.UserService;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
@@ -25,6 +27,7 @@ public class UserController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public Page<User> getAllPagingUser(
             @RequestParam Integer page,
             @RequestParam Integer size,
