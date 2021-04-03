@@ -22,6 +22,7 @@ public class UserController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public void addUser(@Valid @NotNull @RequestBody User user) {
         userService.addUser(user);
     }
@@ -37,16 +38,19 @@ public class UserController {
     }
 
     @GetMapping(path = "{id}")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public User getUserById(@PathVariable("id") Integer id) {
         return userService.getUserById(id).orElse(null);
     }
 
     @DeleteMapping(path = "{id}")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public void deleteUserById(@PathVariable("id") Integer id) {
         userService.deletePerson(id);
     }
 
     @PutMapping(path = "{id}")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public void updateUser(@PathVariable("id") Integer id, @Valid @NotNull @RequestBody User person) {
         userService.updateUser(id, person);
     }

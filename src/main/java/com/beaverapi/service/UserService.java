@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 @Service
@@ -28,7 +29,7 @@ public class UserService {
     }
 
     public Page<User> getAllPagingUser(Integer page, Integer size, Optional<String> orderBy, Optional<Boolean> asc) {
-        if (orderBy.isPresent()){
+        if (orderBy.isPresent()) {
             Sort sort = asc.get() ? Sort.by(orderBy.get()).ascending() : Sort.by(orderBy.get()).descending();
             return userRepository.findAll(
                     PageRequest.of(
